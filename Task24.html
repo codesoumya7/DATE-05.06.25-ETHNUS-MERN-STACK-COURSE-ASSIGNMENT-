@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      padding: 20px;
+    }
+
+    .form-container {
+      background-color: white;
+      padding: 25px;
+      max-width: 400px;
+      margin: auto;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 2px solid #ccc;
+      border-radius: 3px;
+    }
+
+    textarea {
+      height: 80px;
+    }
+
+    .error {
+      color: red;
+      font-size: 12px;
+      display: none;
+      margin-top: 3px;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      background: #ccc;
+      border: none;
+      border-radius: 3px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #bbb;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Registration Form</h2>
+    <form id="form" onsubmit="checkForm(event)">
+      <label>Name:</label>
+      <input type="text" id="name">
+      <div class="error" id="nameError">Please enter your name.</div>
+
+      <label>Email:</label>
+      <input type="text" id="email">
+      <div class="error" id="emailError">Please enter a valid email.</div>
+
+      <label>Website:</label>
+      <input type="text" id="website">
+      <div class="error" id="websiteError">Please enter a valid website URL </div>
+
+      <label>Message:</label>
+      <textarea id="message"></textarea>
+      <div class="error" id="messageError">Please write a message.</div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    function checkForm(e) {
+      e.preventDefault();
+
+      // Get values
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const website = document.getElementById("website").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      // Error messages
+      const nameError = document.getElementById("nameError");
+      const emailError = document.getElementById("emailError");
+      const websiteError = document.getElementById("websiteError");
+      const messageError = document.getElementById("messageError");
+
+      // Hide all errors first
+      nameError.style.display = "none";
+      emailError.style.display = "none";
+      websiteError.style.display = "none";
+      messageError.style.display = "none";
+
+      let valid = true;
+
+      // Simple validations
+      if (name === "") {
+        nameError.style.display = "block";
+        valid = false;
+      }
+
+      if (email === "" || !email.includes("@") || !email.includes(".")) {
+        emailError.style.display = "block";
+        valid = false;
+      }
+
+      if (website === "" || !(website.startsWith("http://") || website.startsWith("https://"))) {
+        websiteError.style.display = "block";
+        valid = false;
+      }
+
+      if (message === "") {
+        messageError.style.display = "block";
+        valid = false;
+      }
+
+      if (valid) {
+        alert("Form submitted successfully!");
+        e.target.reset();
+      }
+    }
+  </script>
+
+</body>
+</html>
