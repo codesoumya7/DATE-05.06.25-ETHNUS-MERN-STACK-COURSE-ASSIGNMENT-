@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Instagram Login</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #fafafa;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .box {
+      background: white;
+      padding: 30px;
+      width: 300px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 36px;
+      font-style: italic;
+      color: #444;
+      margin-bottom: 30px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      font-weight: bold;
+      background: #0095f6;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .checkbox {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+
+    .link {
+      font-size: 13px;
+      color: #888;
+      margin-top: 20px;
+      border-top: 1px solid #ccc;
+      padding-top: 15px;
+    }
+
+    .link a {
+      color: #0095f6;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <div class="logo">Instagram</div>
+
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Username">
+      <input type="password" id="password" placeholder="Password">
+      <div class="checkbox">
+        <label><input type="checkbox" id="remember"> Remember me</label>
+        <a href="#" id="forgot">Forgot?</a>
+      </div>
+      <button type="submit">Log In</button>
+    </form>
+
+    <div class="link">
+      Don't have an account? <a href="#" id="signup">Sign up</a>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("loginForm");
+    const user = document.getElementById("username");
+    const pass = document.getElementById("password");
+    const remember = document.getElementById("remember");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const uname = user.value.trim();
+      const pwd = pass.value.trim();
+      const rem = remember.checked;
+
+      if (uname === "") {
+        alert("Please enter username");
+        return;
+      }
+
+      if (pwd === "") {
+        alert("Please enter password");
+        return;
+      }
+
+      alert("Login:\nUsername: " + uname + "\nRemember: " + rem);
+
+      user.value = "";
+      pass.value = "";
+      remember.checked = false;
+    });
+
+    document.getElementById("forgot").addEventListener("click", function(event) {
+      event.preventDefault();
+      alert("Forgot password feature here");
+    });
+
+    document.getElementById("signup").addEventListener("click", function(event) {
+      event.preventDefault();
+      alert("Sign up page would appear here");
+    });
+  </script>
+
+</body>
+</html>
